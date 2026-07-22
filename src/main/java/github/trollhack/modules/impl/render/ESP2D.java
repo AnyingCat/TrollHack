@@ -65,7 +65,7 @@ public class ESP2D extends Module {
     public final BooleanSetting droppedItems = booleanSetting("DroppedItems", false, () -> page.getValue() == Page.ENTITY_TYPE);
     public final BooleanSetting crystals = booleanSetting("Crystals", false, () -> page.getValue() == Page.ENTITY_TYPE);
 
-    private final FloatSetting fontScale = floatSetting("FontScale", 0.5f, 0.0f, 1.0f, 0.05f, () -> page.getValue() == Page.TAGS);
+    private final FloatSetting fontScale = floatSetting("FontScale", 0.75f, 0.0f, 1.0f, 0.05f, () -> page.getValue() == Page.TAGS);
 
     private final DecimalFormat dFormat = new DecimalFormat("0.0");
 
