@@ -12,6 +12,7 @@ out
 *.iws
 *.iml
 .idea
+othe
 
 # gradle
 build
@@ -24,4 +25,3 @@ run
 runs
 run-data
 repo
-othe
