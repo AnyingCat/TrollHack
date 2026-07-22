@@ -1,2 +1,0 @@
-# Troll Hack
-HeHe
