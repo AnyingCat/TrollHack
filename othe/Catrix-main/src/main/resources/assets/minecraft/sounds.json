@@ -1,0 +1,67 @@
+{
+  "keypress": {
+    "sounds": [
+      "minecraft:keypress"
+    ]
+  },
+  "keyrelease": {
+    "sounds": [
+      "minecraft:keyrelease"
+    ]
+  },
+  "uwu": {
+    "sounds": [
+      "minecraft:uwu"
+    ]
+  },
+  "disable": {
+    "sounds": [
+      "minecraft:disable"
+    ]
+  },
+  "enable": {
+    "sounds": [
+      "minecraft:enable"
+    ]
+  },
+  "moan1": {
+    "sounds": [
+      "minecraft:moan1"
+    ]
+  },
+  "moan2": {
+    "sounds": [
+      "minecraft:moan2"
+    ]
+  },
+  "moan3": {
+    "sounds": [
+      "minecraft:moan3"
+    ]
+  },
+  "moan4": {
+    "sounds": [
+      "minecraft:moan4"
+    ]
+  },
+  "skeet": {
+    "sounds": [
+      "minecraft:skeet"
+    ]
+  },
+  "orthodox": {
+    "sounds": [
+      "minecraft:orthodox"
+    ]
+  },
+  "boolean": {
+    "sounds": [
+      "minecraft:boolean"
+    ]
+  },
+  "scroll": {
+    "sounds": [
+      "minecraft:scroll"
+    ]
+  }
+}

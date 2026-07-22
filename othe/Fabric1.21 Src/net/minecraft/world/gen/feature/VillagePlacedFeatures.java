@@ -1,0 +1,65 @@
+/*
+ * Decompiled with CFR 0.2.2 (FabricMC 7c48b8c4).
+ */
+package net.minecraft.world.gen.feature;
+
+import net.minecraft.block.Blocks;
+import net.minecraft.registry.Registerable;
+import net.minecraft.registry.RegistryEntryLookup;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.PileConfiguredFeatures;
+import net.minecraft.world.gen.feature.PlacedFeature;
+import net.minecraft.world.gen.feature.PlacedFeatures;
+import net.minecraft.world.gen.feature.TreeConfiguredFeatures;
+import net.minecraft.world.gen.feature.VegetationConfiguredFeatures;
+import net.minecraft.world.gen.placementmodifier.PlacementModifier;
+
+public class VillagePlacedFeatures {
+    public static final RegistryKey<PlacedFeature> PILE_HAY = PlacedFeatures.of("pile_hay");
+    public static final RegistryKey<PlacedFeature> PILE_MELON = PlacedFeatures.of("pile_melon");
+    public static final RegistryKey<PlacedFeature> PILE_SNOW = PlacedFeatures.of("pile_snow");
+    public static final RegistryKey<PlacedFeature> PILE_ICE = PlacedFeatures.of("pile_ice");
+    public static final RegistryKey<PlacedFeature> PILE_PUMPKIN = PlacedFeatures.of("pile_pumpkin");
+    public static final RegistryKey<PlacedFeature> OAK = PlacedFeatures.of("oak");
+    public static final RegistryKey<PlacedFeature> ACACIA = PlacedFeatures.of("acacia");
+    public static final RegistryKey<PlacedFeature> SPRUCE = PlacedFeatures.of("spruce");
+    public static final RegistryKey<PlacedFeature> PINE = PlacedFeatures.of("pine");
+    public static final RegistryKey<PlacedFeature> PATCH_CACTUS = PlacedFeatures.of("patch_cactus");
+    public static final RegistryKey<PlacedFeature> FLOWER_PLAIN = PlacedFeatures.of("flower_plain");
+    public static final RegistryKey<PlacedFeature> PATCH_TAIGA_GRASS = PlacedFeatures.of("patch_taiga_grass");
+    public static final RegistryKey<PlacedFeature> PATCH_BERRY_BUSH = PlacedFeatures.of("patch_berry_bush");
+
+    public static void bootstrap(Registerable<PlacedFeature> featureRegisterable) {
+        RegistryEntryLookup<ConfiguredFeature<?, ?>> registryEntryLookup = featureRegisterable.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry = registryEntryLookup.getOrThrow(PileConfiguredFeatures.PILE_HAY);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry2 = registryEntryLookup.getOrThrow(PileConfiguredFeatures.PILE_MELON);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry3 = registryEntryLookup.getOrThrow(PileConfiguredFeatures.PILE_SNOW);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry4 = registryEntryLookup.getOrThrow(PileConfiguredFeatures.PILE_ICE);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry5 = registryEntryLookup.getOrThrow(PileConfiguredFeatures.PILE_PUMPKIN);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry6 = registryEntryLookup.getOrThrow(TreeConfiguredFeatures.OAK);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry7 = registryEntryLookup.getOrThrow(TreeConfiguredFeatures.ACACIA);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry8 = registryEntryLookup.getOrThrow(TreeConfiguredFeatures.SPRUCE);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry9 = registryEntryLookup.getOrThrow(TreeConfiguredFeatures.PINE);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry10 = registryEntryLookup.getOrThrow(VegetationConfiguredFeatures.PATCH_CACTUS);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry11 = registryEntryLookup.getOrThrow(VegetationConfiguredFeatures.FLOWER_PLAIN);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry12 = registryEntryLookup.getOrThrow(VegetationConfiguredFeatures.PATCH_TAIGA_GRASS);
+        RegistryEntry.Reference<ConfiguredFeature<?, ?>> registryEntry13 = registryEntryLookup.getOrThrow(VegetationConfiguredFeatures.PATCH_BERRY_BUSH);
+        PlacedFeatures.register(featureRegisterable, PILE_HAY, registryEntry, new PlacementModifier[0]);
+        PlacedFeatures.register(featureRegisterable, PILE_MELON, registryEntry2, new PlacementModifier[0]);
+        PlacedFeatures.register(featureRegisterable, PILE_SNOW, registryEntry3, new PlacementModifier[0]);
+        PlacedFeatures.register(featureRegisterable, PILE_ICE, registryEntry4, new PlacementModifier[0]);
+        PlacedFeatures.register(featureRegisterable, PILE_PUMPKIN, registryEntry5, new PlacementModifier[0]);
+        PlacedFeatures.register(featureRegisterable, OAK, registryEntry6, PlacedFeatures.wouldSurvive(Blocks.OAK_SAPLING));
+        PlacedFeatures.register(featureRegisterable, ACACIA, registryEntry7, PlacedFeatures.wouldSurvive(Blocks.ACACIA_SAPLING));
+        PlacedFeatures.register(featureRegisterable, SPRUCE, registryEntry8, PlacedFeatures.wouldSurvive(Blocks.SPRUCE_SAPLING));
+        PlacedFeatures.register(featureRegisterable, PINE, registryEntry9, PlacedFeatures.wouldSurvive(Blocks.SPRUCE_SAPLING));
+        PlacedFeatures.register(featureRegisterable, PATCH_CACTUS, registryEntry10, new PlacementModifier[0]);
+        PlacedFeatures.register(featureRegisterable, FLOWER_PLAIN, registryEntry11, new PlacementModifier[0]);
+        PlacedFeatures.register(featureRegisterable, PATCH_TAIGA_GRASS, registryEntry12, new PlacementModifier[0]);
+        PlacedFeatures.register(featureRegisterable, PATCH_BERRY_BUSH, registryEntry13, new PlacementModifier[0]);
+    }
+}
+

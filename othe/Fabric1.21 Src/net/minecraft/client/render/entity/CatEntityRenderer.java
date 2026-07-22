@@ -1,0 +1,59 @@
+/*
+ * Decompiled with CFR 0.2.2 (FabricMC 7c48b8c4).
+ */
+package net.minecraft.client.render.entity;
+
+import java.util.List;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.render.entity.EntityRendererFactory;
+import net.minecraft.client.render.entity.MobEntityRenderer;
+import net.minecraft.client.render.entity.feature.CatCollarFeatureRenderer;
+import net.minecraft.client.render.entity.model.CatEntityModel;
+import net.minecraft.client.render.entity.model.EntityModelLayers;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.passive.CatEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Box;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RotationAxis;
+
+@Environment(value=EnvType.CLIENT)
+public class CatEntityRenderer
+extends MobEntityRenderer<CatEntity, CatEntityModel<CatEntity>> {
+    public CatEntityRenderer(EntityRendererFactory.Context context) {
+        super(context, new CatEntityModel(context.getPart(EntityModelLayers.CAT)), 0.4f);
+        this.addFeature(new CatCollarFeatureRenderer(this, context.getModelLoader()));
+    }
+
+    @Override
+    public Identifier getTexture(CatEntity catEntity) {
+        return catEntity.getTexture();
+    }
+
+    @Override
+    protected void scale(CatEntity catEntity, MatrixStack matrixStack, float f) {
+        super.scale(catEntity, matrixStack, f);
+        matrixStack.scale(0.8f, 0.8f, 0.8f);
+    }
+
+    @Override
+    protected void setupTransforms(CatEntity catEntity, MatrixStack matrixStack, float f, float g, float h, float i) {
+        super.setupTransforms(catEntity, matrixStack, f, g, h, i);
+        float j = catEntity.getSleepAnimation(h);
+        if (j > 0.0f) {
+            matrixStack.translate(0.4f * j, 0.15f * j, 0.1f * j);
+            matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerpAngleDegrees(j, 0.0f, 90.0f)));
+            BlockPos blockPos = catEntity.getBlockPos();
+            List<PlayerEntity> list = catEntity.getWorld().getNonSpectatingEntities(PlayerEntity.class, new Box(blockPos).expand(2.0, 2.0, 2.0));
+            for (PlayerEntity playerEntity : list) {
+                if (!playerEntity.isSleeping()) continue;
+                matrixStack.translate(0.15f * j, 0.0f, 0.0f);
+                break;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,37 @@
+{
+  "targets": [
+    "bufIn",
+    "swap",
+    "bufOut"
+  ],
+  "passes": [
+    {
+      "name": "troll:outline_prepare",
+      "intarget": "bufIn",
+      "outtarget": "swap",
+      "uniforms": []
+    },
+    {
+      "name": "troll:outline_blur",
+      "intarget": "swap",
+      "outtarget": "bufOut",
+      "uniforms": [
+        { "name": "BlurDir", "values": [ 1.0, 0.0 ] }
+      ]
+    },
+    {
+      "name": "troll:outline_blur",
+      "intarget": "bufOut",
+      "outtarget": "swap",
+      "uniforms": [
+        { "name": "BlurDir", "values": [ 0.0, 1.0 ] }
+      ]
+    },
+    {
+      "name": "troll:outline",
+      "intarget": "swap",
+      "outtarget": "bufOut",
+      "uniforms": []
+    }
+  ]
+}

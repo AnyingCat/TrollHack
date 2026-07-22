@@ -1,0 +1,70 @@
+name: NightlyBuild
+
+on:
+    push:
+        branches:
+            - dev
+    workflow_dispatch:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            -   name: Check out repository
+                uses: actions/checkout@v2
+
+            -   name: Set up JDK
+                uses: actions/setup-java@v1
+                with:
+                    java-version: 17
+
+            -   name: Extra Gradle cache
+                uses: actions/cache@v3
+                with:
+                    path: |
+                        ~/.gradle/caches/fast-remapper
+                        ~/.gradle/caches/forge_gradle
+                    key: ${{ runner.os }}-extra-${{ hashFiles('~/.gradle/caches/fast-remapper', '~/.gradle/caches/forge_gradle') }}
+                    restore-keys: |
+                        ${{ runner.os }}-extra-
+
+            -   name: Get version
+                run: |
+                    devVer=$(grep modVersion gradle.properties | grep -o '.\..\..')
+                    commitHash=$(git rev-parse --short HEAD)
+                    modVer=$devVer-nightly-$commitHash
+                    echo modVer=$modVer >> $GITHUB_ENV
+
+            -   name: Gradle assemble
+                uses: burrunan/gradle-cache-action@v1
+                env:
+                    OVERRIDE_VERSION: ${{ env.modVer }}
+                with:
+                    concurrent: true
+                    arguments: --build-cache assemble
+
+            -   name: Copy jar
+                env:
+                    modVer: ${{ env.modVer }}
+                run: |
+                    cp build/libs/TrollHack-$modVer.jar TrollHack-$modVer.jar
+
+            -   name: Upload jar
+                uses: actions/upload-artifact@v2
+                with:
+                    name: nightly-build
+                    path: TrollHack-${{ env.modVer }}.jar
+
+            -   name: Nightly build Discord webhook
+                env:
+                    runID: ${{ github.run_id }}
+                    webhookUrl: ${{ secrets.NIGHTLY_DISCORD_WEBHOOK }}
+                    modVer: ${{ env.modVer }}
+                run: |
+                    commitLongHash=$(git rev-parse HEAD)
+                    nightlyLink="https://nightly.link/$GITHUB_REPOSITORY/actions/runs/$runID/nightly-build.zip"
+                    commitMessage=$(git log --pretty=format:"[%h](https://github.com/$GITHUB_REPOSITORY/commit/%H) %s" -1 --reverse)
+                    json='{"embeds":[{"title":"'$modVer'","url":"https://github.com/'$GITHUB_REPOSITORY'/actions/runs/'$runID'","color":16100025,"description":"**Commit:**\n'$commitMessage'\n\n**Download:**\n[TrollHack-'$modVer'.zip]('$nightlyLink')"}]}'
+                    curl "$webhookUrl" -H "Content-Type:application/json" -X POST -d "$json"
+                    curl "$webhookUrl" -H "Content-Type:multipart/form-data" -v -F "files[0]=@TrollHack-$modVer.jar"

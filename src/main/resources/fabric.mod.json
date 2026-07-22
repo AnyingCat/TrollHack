@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "troll",
+  "version": "${version}",
+  "name": "troll",
+  "description": "Minecraft Client Base",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "github.trollhack.Troll"
+    ]
+  },
+  "mixins": [
+    "troll.mixins.json"
+  ],
+  "accessWidener": "troll.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21",
+    "java": ">=21"
+  }
+}

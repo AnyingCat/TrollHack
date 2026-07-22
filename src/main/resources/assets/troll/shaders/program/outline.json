@@ -1,0 +1,22 @@
+{
+  "blend": {
+    "func": "add",
+    "srcrgb": "srcalpha",
+    "dstrgb": "1-srcalpha"
+  },
+  "vertex": "sobel",
+  "fragment": "troll:outline",
+  "attributes": [ "Position" ],
+  "samplers": [{ "name": "DiffuseSampler" }],
+  "uniforms": [
+    { "name": "ProjMat", "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+    { "name": "InSize", "type": "float", "count": 2, "values": [ 1.0, 1.0 ] },
+    { "name": "OutSize", "type": "float", "count": 2, "values": [ 1.0, 1.0 ] },
+    { "name": "RenderMode", "type": "int", "count": 1, "values": [ 2.0 ] },
+    { "name": "FillOpacity", "type": "float", "count": 1, "values": [ 0.18 ] },
+    { "name": "color", "type": "float", "count": 3, "values": [ 0.45, 0.11, 0.99 ] },
+    { "name": "Thickness", "type": "float", "count": 1, "values": [ 1.5 ] },
+    { "name": "Intensity", "type": "float", "count": 1, "values": [ 1.0 ] },
+    { "name": "resolution", "type": "float", "count": 2, "values": [ 1920.0, 1080.0 ] }
+  ]
+}
